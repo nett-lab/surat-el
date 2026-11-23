@@ -59,7 +59,8 @@ export async function updateSession(request) {
     return NextResponse.redirect(loginUrl);
   }
 
-  if (user && (pathname === '/login' || pathname === '/forgot-password')) {
+  const hasErrorParam = request.nextUrl.searchParams.has('error');
+  if (user && !hasErrorParam && (pathname === '/login' || pathname === '/forgot-password')) {
     const dashUrl = request.nextUrl.clone();
     dashUrl.pathname = '/dashboard';
     dashUrl.search = '';

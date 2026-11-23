@@ -115,7 +115,7 @@ export const getSessionContext = cache(async () => {
 export async function requireAuth(options = {}) {
   const ctx = await getSessionContext();
   if (!ctx) {
-    redirect('/login');
+    redirect('/login?error=akses_tidak_aktif');
   }
   if (ctx.needsMfa && !options.allowPendingMfa) {
     redirect('/mfa');

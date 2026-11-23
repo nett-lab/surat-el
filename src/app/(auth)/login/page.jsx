@@ -10,16 +10,23 @@ import { Button, Card, CardContent, Input, Label } from '@/components/ui/primiti
 function LoginForm() {
   const params = useSearchParams();
   const defaultTenant = params.get('instansi') || '';
+  const accessError = params.get('error');
   const [state, action, pending] = useActionState(loginAction, null);
+
+  const bannerError =
+    state?.error ||
+    (accessError === 'akses_tidak_aktif'
+      ? 'Sesi Anda tidak memiliki profil instansi aktif atau hak akses Platform Admin. Pastikan akun sudah didaftarkan dan migrasi database lengkap.'
+      : null);
 
   return (
     <form action={action} className="space-y-4">
-      {state?.error && (
+      {bannerError && (
         <div
           role="alert"
           className="rounded-lg border border-red-200 bg-red-50 px-3.5 py-2.5 text-sm text-red-700 dark:border-red-900 dark:bg-red-950/50 dark:text-red-300"
         >
-          {state.error}
+          {bannerError}
         </div>
       )}
 

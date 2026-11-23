@@ -28,7 +28,7 @@ npm run dev
 
 ## Setup Supabase
 
-1. Jalankan seluruh migrasi di `supabase/migrations/` secara berurutan (`0001_schema.sql` sampai `0004_cron.sql`) melalui Supabase CLI (`supabase db push`) atau SQL Editor.
+1. Jalankan seluruh migrasi di `supabase/migrations/` secara berurutan (`0001_schema.sql` sampai `0005_grants.sql`) melalui Supabase CLI (`supabase db push`) atau SQL Editor.
 2. Untuk mengaktifkan sweeper `pg_cron` (paket Vercel Hobby), simpan dua secret berikut di **Supabase Vault** (SQL Editor):
    ```sql
    select vault.create_secret('https://domain-anda.vercel.app', 'esurat_app_url');
